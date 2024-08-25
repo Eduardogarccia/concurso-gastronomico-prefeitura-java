@@ -9,5 +9,9 @@ import br.com.concurso.models.User;
 public interface UserRepository extends JpaRepository<User, Long>{
 	
 	Optional<User> findByCpf(String cpf);
+	
+	boolean existsByCpf(String cpf);
+    
+	boolean existsByEmail(String email);
 
 }

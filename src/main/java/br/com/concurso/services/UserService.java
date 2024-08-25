@@ -3,9 +3,11 @@ package br.com.concurso.services;
 import java.util.List;
 import java.util.Optional;
 
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
 
 import br.com.concurso.exceptions.EntityNotFoundException;
+import br.com.concurso.exceptions.UsernameUniqueViolationException;
 import br.com.concurso.models.User;
 import br.com.concurso.repositories.UserRepository;
 import lombok.RequiredArgsConstructor;
@@ -17,9 +19,21 @@ public class UserService {
 	private final UserRepository userRepository;
 	
 	public User salvar(User user) {
-		
-		return userRepository.save(user);
+	    if (userRepository.existsByCpf(user.getCpf())) {
+	        throw new UsernameUniqueViolationException("Cliente com CPF: " + user.getCpf() + " já cadastrado ou CPF inválido!");
+	    }
+
+	    if (userRepository.existsByEmail(user.getEmail())) {
+	        throw new UsernameUniqueViolationException("Cliente com email: " + user.getEmail() + " já cadastrado ou email inválido!");
+	    }
+
+	    try {
+	        return userRepository.save(user);
+	    } catch (DataIntegrityViolationException e) {
+	        throw new UsernameUniqueViolationException("Erro ao salvar cliente: " + e.getMessage());
+	    }
 	}
+
 	
 	public User buscarPorId(Long id) {
 		return userRepository.findById(id).orElseThrow(() -> new EntityNotFoundException("Usuário com id " + id + " não encontrado!"));
