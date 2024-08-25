@@ -27,7 +27,7 @@ public class AvaliacaoPratoService {
 	}
 	
 	public AvaliacaoPrato buscarPorId(Long id) {
-		return avaliacaoPratoRepository.findById(id).orElseThrow(() -> new EntityNotFoundException("Usuário com id" + id + " não encontrado!"));
+		return avaliacaoPratoRepository.findById(id).orElseThrow(() -> new EntityNotFoundException("Avaliação de prato com id " + id + " não encontrado!"));
 	}
 	
 	public List<AvaliacaoPrato> buscarTodos(){
@@ -49,7 +49,7 @@ public class AvaliacaoPratoService {
 			
 			return salvar(avaliacaoPrato);
 		} else {
-			throw new EntityNotFoundException("Usuário com id" + id + " não encontrado!");
+			throw new EntityNotFoundException("Avaliação de prato com id " + id + " não encontrado!");
 		}
 		
 	}

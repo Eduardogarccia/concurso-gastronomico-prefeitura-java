@@ -22,7 +22,7 @@ public class UserService {
 	}
 	
 	public User buscarPorId(Long id) {
-		return userRepository.findById(id).orElseThrow(() -> new EntityNotFoundException("Usuário com id" + id + " não encontrado!"));
+		return userRepository.findById(id).orElseThrow(() -> new EntityNotFoundException("Usuário com id " + id + " não encontrado!"));
 	}
 	
 	public List<User> buscarTodos(){
@@ -44,13 +44,13 @@ public class UserService {
 			
 			return salvar(user);
 		} else {
-			throw new EntityNotFoundException("Usuário com id" + id + " não encontrado!");
+			throw new EntityNotFoundException("Usuário com id " + id + " não encontrado!");
 		}
 		
 	}
 	
 	public User buscarPorCpf(String cpf) {
-		return userRepository.findByCpf(cpf).orElseThrow(() -> new EntityNotFoundException("Usuário com cpf:" + cpf + " não encontrado!"));
+		return userRepository.findByCpf(cpf).orElseThrow(() -> new EntityNotFoundException("Usuário com cpf: " + cpf + " não encontrado!"));
 	}
 
 }

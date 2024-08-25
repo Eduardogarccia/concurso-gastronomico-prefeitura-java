@@ -23,7 +23,7 @@ public class RestauranteService {
 	}
 	
 	public Restaurante buscarPorId(Long id) {
-		return restauranteRepository.findById(id).orElseThrow(() -> new EntityNotFoundException("Restaurante com id" + id + " não encontrado!"));
+		return restauranteRepository.findById(id).orElseThrow(() -> new EntityNotFoundException("Restaurante com id " + id + " não encontrado!"));
 	}
 	
 	public List<Restaurante> buscarTodos(){
@@ -45,7 +45,7 @@ public class RestauranteService {
 			
 			return salvar(restaurante);
 		} else {
-			throw new EntityNotFoundException("Restaurante com id" + id + " não encontrado!");
+			throw new EntityNotFoundException("Restaurante com id " + id + " não encontrado!");
 		}
 		
 	}

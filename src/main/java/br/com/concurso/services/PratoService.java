@@ -22,7 +22,7 @@ public class PratoService {
 	}
 	
 	public Prato buscarPorId(Long id) {
-		return pratoRepository.findById(id).orElseThrow(() -> new EntityNotFoundException("Prato com id" + id + " não encontrado!"));
+		return pratoRepository.findById(id).orElseThrow(() -> new EntityNotFoundException("Prato com id " + id + " não encontrado!"));
 	}
 	
 	public List<Prato> buscarTodos(){
@@ -44,7 +44,7 @@ public class PratoService {
 			
 			return salvar(prato);
 		} else {
-			throw new EntityNotFoundException("Prato com id" + id + " não encontrado!");
+			throw new EntityNotFoundException("Prato com id " + id + " não encontrado!");
 		}
 		
 	}
