@@ -10,6 +10,7 @@ import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
+import br.com.concurso.exceptions.AvaliacaoDuplicadaException;
 import br.com.concurso.exceptions.EntityNotFoundException;
 import br.com.concurso.exceptions.UsernameUniqueViolationException;
 
@@ -34,6 +35,12 @@ public class RestExceptionHandler {
 	
 	@ExceptionHandler(UsernameUniqueViolationException.class)
 	public ResponseEntity<ErrorMessage> usernameUniqueViolationException(UsernameUniqueViolationException ex){
+		ErrorMessage errorMessage= new ErrorMessage(HttpStatus.CONFLICT, ex.getMessage());
+		return new ResponseEntity<>(errorMessage,HttpStatus.CONFLICT);
+	}
+	
+	@ExceptionHandler(AvaliacaoDuplicadaException.class)
+	public ResponseEntity<ErrorMessage> AvaliacaoDuplicadaException(AvaliacaoDuplicadaException ex){
 		ErrorMessage errorMessage= new ErrorMessage(HttpStatus.CONFLICT, ex.getMessage());
 		return new ResponseEntity<>(errorMessage,HttpStatus.CONFLICT);
 	}

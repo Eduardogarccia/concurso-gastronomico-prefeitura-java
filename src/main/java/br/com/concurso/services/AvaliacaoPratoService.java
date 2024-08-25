@@ -7,6 +7,7 @@ import java.util.Optional;
 
 import org.springframework.stereotype.Service;
 
+import br.com.concurso.exceptions.AvaliacaoDuplicadaException;
 import br.com.concurso.exceptions.EntityNotFoundException;
 import br.com.concurso.models.AvaliacaoPrato;
 import br.com.concurso.models.Prato;
@@ -61,8 +62,14 @@ public class AvaliacaoPratoService {
 	
 	
 	public AvaliacaoPrato avaliarPrato(AvaliacaoPrato avaliacaoPrato) {
-	    
-	    Prato pratoAvaliado = pratoService.buscarPorId(avaliacaoPrato.getPrato().getId());
+	   
+		Optional<AvaliacaoPrato> avaliacaoExistente = avaliacaoPratoRepository.findByUserIdAndPratoId(avaliacaoPrato.getUser().getId(), avaliacaoPrato.getPrato().getId());
+		
+		if(avaliacaoExistente.isPresent()) {
+			throw new AvaliacaoDuplicadaException("O usuário já avaliou este prato.");
+		}
+		
+		Prato pratoAvaliado = pratoService.buscarPorId(avaliacaoPrato.getPrato().getId());
 
 	    pratoAvaliado.setQtdAvaliacoes(pratoAvaliado.getQtdAvaliacoes() + 1);
 
