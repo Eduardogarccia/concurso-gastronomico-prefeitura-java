@@ -1,6 +1,7 @@
 package br.com.concurso.services;
 
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.List;
 import java.util.Optional;
 
@@ -72,7 +73,7 @@ public class AvaliacaoPratoService {
 	    BigDecimal qtdAvaliacoes = new BigDecimal(pratoAvaliado.getQtdAvaliacoes());
 
 	    if (qtdAvaliacoes.compareTo(BigDecimal.ZERO) > 0) {
-	        BigDecimal notaMedia = somaNotas.divide(qtdAvaliacoes);
+	        BigDecimal notaMedia = somaNotas.divide(qtdAvaliacoes, 2, RoundingMode.HALF_UP);
 
 	        pratoAvaliado.setNota(notaMedia);
 	        

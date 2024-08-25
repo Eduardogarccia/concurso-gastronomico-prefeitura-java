@@ -32,8 +32,8 @@ public class AvaliacaoRestauranteController {
 	private final AvaliacaoRestauranteMapper avaliacaoRestauranteMapper;
 	
 	@PostMapping
-	public ResponseEntity<AvaliacaoRestauranteResponseDTO> salvar(@RequestBody @Valid AvaliacaoRestauranteCreateDTO createDTO){
-		AvaliacaoRestaurante avaliacaoRestaurante = avaliacaoRestauranteService.salvar(avaliacaoRestauranteMapper.toAvaliacaoRestaurante(createDTO));
+	public ResponseEntity<AvaliacaoRestauranteResponseDTO> avaliarRestaurante(@RequestBody @Valid AvaliacaoRestauranteCreateDTO createDTO){
+		AvaliacaoRestaurante avaliacaoRestaurante = avaliacaoRestauranteService.avaliarRestaurante(avaliacaoRestauranteMapper.toAvaliacaoRestaurante(createDTO));
 		return ResponseEntity.status(HttpStatus.CREATED).body(avaliacaoRestauranteMapper.toDto(avaliacaoRestaurante));
 	}
 	

@@ -6,6 +6,7 @@ import java.util.Optional;
 import org.springframework.stereotype.Service;
 
 import br.com.concurso.exceptions.EntityNotFoundException;
+import br.com.concurso.models.Prato;
 import br.com.concurso.models.Restaurante;
 import br.com.concurso.repositories.RestauranteRepository;
 import lombok.RequiredArgsConstructor;
@@ -48,5 +49,16 @@ public class RestauranteService {
 		}
 		
 	}
+	
+	public Restaurante atualizarRestaurante(Restaurante restauranteAtualizado) {
+        Optional<Restaurante> restauranteExistente = restauranteRepository.findById(restauranteAtualizado.getId());
+
+        if (restauranteExistente.isPresent()) {
+            Restaurante restaurante = restauranteRepository.save(restauranteAtualizado);
+            return restaurante;
+        } else {
+            throw new EntityNotFoundException("Restaurante com id " + restauranteAtualizado.getId() + " não encontrado.");
+        }
+    }
 
 }
