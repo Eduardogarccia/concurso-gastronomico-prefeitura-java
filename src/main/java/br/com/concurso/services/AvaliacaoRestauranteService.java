@@ -7,6 +7,7 @@ import java.util.Optional;
 
 import org.springframework.stereotype.Service;
 
+import br.com.concurso.exceptions.AvaliacaoDuplicadaException;
 import br.com.concurso.exceptions.EntityNotFoundException;
 import br.com.concurso.models.AvaliacaoRestaurante;
 import br.com.concurso.models.Restaurante;
@@ -61,7 +62,13 @@ public BigDecimal somarNotasPorRestaurante(Long pratoId) {
 	
 	public AvaliacaoRestaurante avaliarRestaurante(AvaliacaoRestaurante avaliacaoRestaurante) {
 	    
-	    Restaurante restauranteAvaliado = restauranteService.buscarPorId(avaliacaoRestaurante.getRestaurante().getId());
+	    Optional<AvaliacaoRestaurante> avaliacaoExistente = avaliacaoRestauranteRepository.findByUserIdAndRestauranteId(avaliacaoRestaurante.getUser().getId(), avaliacaoRestaurante.getRestaurante().getId());
+		
+	    if(avaliacaoExistente.isPresent()) {
+	    	throw new AvaliacaoDuplicadaException("O usuário já avaliou este restaurante.");
+	    }
+	    
+		Restaurante restauranteAvaliado = restauranteService.buscarPorId(avaliacaoRestaurante.getRestaurante().getId());
 
 	    restauranteAvaliado.setQtdAvaliacoes(restauranteAvaliado.getQtdAvaliacoes() + 1);
 
