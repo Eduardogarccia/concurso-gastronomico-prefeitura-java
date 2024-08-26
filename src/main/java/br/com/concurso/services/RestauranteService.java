@@ -1,5 +1,6 @@
 package br.com.concurso.services;
 
+import java.math.BigDecimal;
 import java.util.List;
 import java.util.Optional;
 
@@ -8,7 +9,7 @@ import org.springframework.stereotype.Service;
 
 import br.com.concurso.exceptions.EntityNotFoundException;
 import br.com.concurso.exceptions.UsernameUniqueViolationException;
-import br.com.concurso.models.Prato;
+import br.com.concurso.exceptions.ValoresIniciaisInvalidosException;
 import br.com.concurso.models.Restaurante;
 import br.com.concurso.repositories.RestauranteRepository;
 import lombok.RequiredArgsConstructor;
@@ -23,6 +24,10 @@ public class RestauranteService {
 		
 		if(restauranteRepository.existsByNome(restaurante.getNome())) {
 			throw new UsernameUniqueViolationException("Esse restaurante ja foi cadastrado!");
+		}
+		
+		if(restaurante.getNota() != BigDecimal.ZERO || restaurante.getQtdAvaliacoes() != 0) {
+			throw new ValoresIniciaisInvalidosException("A nota e a quantidade de avaliações iniciais devem ser igual a zero!");
 		}
 		
 		try {

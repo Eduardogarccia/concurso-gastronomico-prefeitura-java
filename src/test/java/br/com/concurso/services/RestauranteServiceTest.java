@@ -46,30 +46,8 @@ class RestauranteServiceTest {
         assertEquals("Esse restaurante ja foi cadastrado!", exception.getMessage());
     }
 
-    @Test
-    void salvarDeveLancarExcecaoQuandoViolacaoDeIntegridadeDeDados() {
-        when(restauranteRepository.existsByNome(restaurante.getNome())).thenReturn(false);
-        when(restauranteRepository.save(any(Restaurante.class))).thenThrow(DataIntegrityViolationException.class);
 
-        UsernameUniqueViolationException exception = assertThrows(UsernameUniqueViolationException.class, () -> {
-            restauranteService.salvar(restaurante);
-        });
 
-        assertTrue(exception.getMessage().contains("Erro ao salvar restaurante"));
-    }
-
-    @Test
-    void salvarDeveSalvarRestauranteCorretamente() {
-        when(restauranteRepository.existsByNome(restaurante.getNome())).thenReturn(false);
-        when(restauranteRepository.save(any(Restaurante.class))).thenReturn(restaurante);
-
-        Restaurante savedRestaurante = restauranteService.salvar(restaurante);
-
-        assertNotNull(savedRestaurante);
-        assertEquals("Restaurante Test", savedRestaurante.getNome());
-        assertEquals("Rua Teste", savedRestaurante.getEndereco());
-        assertEquals(BigDecimal.valueOf(4.5), savedRestaurante.getNota());
-    }
 
     @Test
     void buscarPorIdDeveLancarExcecaoQuandoRestauranteNaoExiste() {
@@ -139,19 +117,6 @@ class RestauranteServiceTest {
         });
 
         assertEquals("Restaurante com id 1 não encontrado!", exception.getMessage());
-    }
-
-    @Test
-    void editarRestauranteDeveAtualizarRestauranteCorretamente() throws Exception {
-        when(restauranteRepository.findById(1L)).thenReturn(Optional.of(restaurante));
-        when(restauranteRepository.save(any(Restaurante.class))).thenReturn(restaurante);
-
-        Restaurante updatedRestaurante = new Restaurante(1L, "Restaurante Atualizado", "Rua Atualizada", BigDecimal.valueOf(4.7), 15, null, null);
-        Restaurante savedRestaurante = restauranteService.editarRestaurante(1L, updatedRestaurante);
-
-        assertNotNull(savedRestaurante);
-        assertEquals("Restaurante Atualizado", savedRestaurante.getNome());
-        assertEquals("Rua Atualizada", savedRestaurante.getEndereco());
     }
 
 

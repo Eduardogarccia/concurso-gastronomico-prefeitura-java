@@ -14,6 +14,7 @@ import br.com.concurso.exceptions.AvaliacaoDuplicadaException;
 import br.com.concurso.exceptions.EntityNotFoundException;
 import br.com.concurso.exceptions.RestauranteJaTemPratoException;
 import br.com.concurso.exceptions.UsernameUniqueViolationException;
+import br.com.concurso.exceptions.ValoresIniciaisInvalidosException;
 
 @RestControllerAdvice
 public class RestExceptionHandler {
@@ -48,6 +49,12 @@ public class RestExceptionHandler {
 	
 	@ExceptionHandler(RestauranteJaTemPratoException.class)
 	public ResponseEntity<ErrorMessage> RestauranteJaTemPratoException(RestauranteJaTemPratoException ex){
+		ErrorMessage errorMessage= new ErrorMessage(HttpStatus.CONFLICT, ex.getMessage());
+		return new ResponseEntity<>(errorMessage,HttpStatus.CONFLICT);
+	}
+	
+	@ExceptionHandler(ValoresIniciaisInvalidosException.class)
+	public ResponseEntity<ErrorMessage> ValoresIniciaisInvalidosException(ValoresIniciaisInvalidosException ex){
 		ErrorMessage errorMessage= new ErrorMessage(HttpStatus.CONFLICT, ex.getMessage());
 		return new ResponseEntity<>(errorMessage,HttpStatus.CONFLICT);
 	}
