@@ -20,7 +20,7 @@ public class RestauranteResponseDTO {
 	private String endereco;
 	
 	private BigDecimal nota;
-	
+
 	private int qtdAvaliacoes;
 
 }
