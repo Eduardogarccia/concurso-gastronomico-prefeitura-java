@@ -61,22 +61,5 @@ public class AvaliacaoRestauranteController {
 		return ResponseEntity.status(HttpStatus.OK).body(avaliacaoRestauranteMapper.toDto(avaliacaoRestaurante));
 		
 	}
-
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 	
 }
