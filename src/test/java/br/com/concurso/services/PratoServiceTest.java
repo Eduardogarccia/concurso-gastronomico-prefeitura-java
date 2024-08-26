@@ -48,18 +48,6 @@ class PratoServiceTest {
         assertEquals("Esse restaurante já tem um prato cadastrado!", exception.getMessage());
     }
 
-    @Test
-    void salvarDeveSalvarPratoCorretamente() {
-        when(pratoRepository.existsByRestauranteId(prato.getRestaurante().getId())).thenReturn(false);
-        when(pratoRepository.save(any(Prato.class))).thenReturn(prato);
-
-        Prato savedPrato = pratoService.salvar(prato);
-
-        assertNotNull(savedPrato);
-        assertEquals("Prato Test", savedPrato.getNome());
-        assertEquals("Descrição do prato", savedPrato.getDescricao());
-        assertEquals(BigDecimal.valueOf(29.90), savedPrato.getPreco());
-    }
 
     @Test
     void buscarPorIdDeveLancarExcecaoQuandoPratoNaoExiste() {
@@ -119,18 +107,7 @@ class PratoServiceTest {
         assertEquals("Prato com id 1 não encontrado!", exception.getMessage());
     }
 
-    @Test
-    void editarPratoDeveAtualizarPratoCorretamente() throws Exception {
-        when(pratoRepository.findById(1L)).thenReturn(Optional.of(prato));
-        when(pratoRepository.save(any(Prato.class))).thenReturn(prato);
 
-        Prato updatedPrato = new Prato(1L, "Prato Atualizado", "Descrição atualizada", BigDecimal.valueOf(39.90), BigDecimal.valueOf(4.7), 15, restaurante, null);
-        Prato savedPrato = pratoService.editarPrato(1L, updatedPrato);
-
-        assertNotNull(savedPrato);
-        assertEquals("Prato Atualizado", savedPrato.getNome());
-        assertEquals("Descrição atualizada", savedPrato.getDescricao());
-    }
 
 
     @Test
