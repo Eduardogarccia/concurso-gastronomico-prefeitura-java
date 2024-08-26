@@ -6,6 +6,7 @@ import java.util.Optional;
 import org.springframework.stereotype.Service;
 
 import br.com.concurso.exceptions.EntityNotFoundException;
+import br.com.concurso.exceptions.RestauranteJaTemPratoException;
 import br.com.concurso.models.Prato;
 import br.com.concurso.repositories.PratoRepository;
 import lombok.RequiredArgsConstructor;
@@ -17,6 +18,11 @@ public class PratoService {
 	private final PratoRepository pratoRepository;
 	
 	public Prato salvar(Prato prato) {
+		
+
+		if(pratoRepository.existsByRestauranteId(prato.getRestaurante().getId())) {
+			throw new RestauranteJaTemPratoException("Esse restaurante já tem um prato cadastrado!");
+		}
 		
 		return pratoRepository.save(prato);
 	}

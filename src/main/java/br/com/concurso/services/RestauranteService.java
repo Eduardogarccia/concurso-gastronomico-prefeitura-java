@@ -3,9 +3,11 @@ package br.com.concurso.services;
 import java.util.List;
 import java.util.Optional;
 
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
 
 import br.com.concurso.exceptions.EntityNotFoundException;
+import br.com.concurso.exceptions.UsernameUniqueViolationException;
 import br.com.concurso.models.Prato;
 import br.com.concurso.models.Restaurante;
 import br.com.concurso.repositories.RestauranteRepository;
@@ -19,7 +21,16 @@ public class RestauranteService {
 	
 	public Restaurante salvar(Restaurante restaurante) {
 		
-		return restauranteRepository.save(restaurante);
+		if(restauranteRepository.existsByNome(restaurante.getNome())) {
+			throw new UsernameUniqueViolationException("Esse restaurante ja foi cadastrado!");
+		}
+		
+		try {
+			return restauranteRepository.save(restaurante);	
+		} catch (DataIntegrityViolationException e) {
+			throw new UsernameUniqueViolationException("Erro ao salvar restaurante. " + e.getMessage());
+		}
+		
 	}
 	
 	public Restaurante buscarPorId(Long id) {

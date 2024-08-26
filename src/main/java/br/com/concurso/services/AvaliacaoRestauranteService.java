@@ -54,7 +54,7 @@ public class AvaliacaoRestauranteService {
 		
 	}
 	
-public BigDecimal somarNotasPorRestaurante(Long pratoId) {
+	public BigDecimal somarNotasPorRestaurante(Long pratoId) {
         
 		return avaliacaoRestauranteRepository.somarNotasPorRestaurante(pratoId);
     }

@@ -20,17 +20,17 @@ public class UserService {
 	
 	public User salvar(User user) {
 	    if (userRepository.existsByCpf(user.getCpf())) {
-	        throw new UsernameUniqueViolationException("Cliente com CPF: " + user.getCpf() + " já cadastrado ou CPF inválido!");
+	        throw new UsernameUniqueViolationException("User com CPF: " + user.getCpf() + " já cadastrado ou CPF inválido!");
 	    }
 
 	    if (userRepository.existsByEmail(user.getEmail())) {
-	        throw new UsernameUniqueViolationException("Cliente com email: " + user.getEmail() + " já cadastrado ou email inválido!");
+	        throw new UsernameUniqueViolationException("User com email: " + user.getEmail() + " já cadastrado ou email inválido!");
 	    }
 
 	    try {
 	        return userRepository.save(user);
 	    } catch (DataIntegrityViolationException e) {
-	        throw new UsernameUniqueViolationException("Erro ao salvar cliente: " + e.getMessage());
+	        throw new UsernameUniqueViolationException("Erro ao salvar User. " + e.getMessage());
 	    }
 	}
 
