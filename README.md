@@ -49,3 +49,26 @@ Abaixo está o modelo de dados utilizado no projeto:
 1. Clone o repositório:
    ```bash
    git clone https://github.com/seu-usuario/concurso-gastronomico.git
+  ```
+
+2. Crie o BD concurso no MySQL:
+   ```bash
+   create database concurso
+  ```
+
+3. Ajuste o arquivo application.properties do projeto:
+   ```bash
+   spring.datasource.username=(seu user)
+   spring.datasource.password=(sua senha)
+  ```
+4. Rode o projeto "Run As Spring Boot App"
+
+5. Abra o Swegger: http://localhost:8080/swagger-ui.html
+
+6. Passo a Passo dos endpoints:
+- Comece criando um User
+- Crie um Restaurante (mantenha os campos nota e qtdAvaliacoes iguais a 0)
+- Crie um Prato e use o id de um restaurante existente par referenciar (mantenha os campos nota e qtdAvaliacoes iguais a 0)
+- Você já pode criar avaliações de pratos ou restaurantes, usando o id do user e o id do prato ou restaurante. 
+
+
