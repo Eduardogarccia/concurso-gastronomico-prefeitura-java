@@ -9,24 +9,22 @@ Este projeto é uma aplicação para um **Concurso Gastronômico**, onde os usu�
   - Identificação única por ID.
 
 - **Restaurantes**
-  - Cadastro de restaurantes participantes, com nome, endereço, nota média e quantidade de avaliações.
+  - Cadastro de restaurantes participantes, com nome, endereço.
 
 - **Pratos**
-  - Cadastro de pratos vinculados aos restaurantes, com nome, descrição, preço, nota média e quantidade de avaliações.
+  - Cadastro de pratos vinculados aos restaurantes, com nome, descrição, preço.
 
 - **Avaliações**
   - Avaliação de restaurantes, com descrição e nota.
   - Avaliação de pratos, com descrição e nota.
 
 - **Relatórios**
-  - Apuração das notas médias dos pratos e restaurantes.
-  - Identificação dos pratos e restaurantes mais bem avaliados.
+  - Apuração das notas médias dos pratos e restaurantes, com a simples listagem deles.
 
 ## 🛠️ Tecnologias Utilizadas
 
 - **Backend**: Spring Boot
 - **Banco de Dados**: MySQL
-- **Frontend**: Angular/React/Ionic (sugestões para futuras implementações).
 - **Padrões de Desenvolvimento**:
   - Arquitetura MVC
   - Uso de DTOs para transporte seguro e eficiente de dados
