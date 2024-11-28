@@ -49,7 +49,7 @@ Abaixo está o modelo de dados utilizado no projeto:
 1. Clone o repositório:
 
 ```bash
-   git clone https://github.com/seu-usuario/concurso-gastronomico.git
+   git clone https://github.com/Eduardogarccia/concurso-gastronomico-prefeitura-java.git
 ```
 
 2. Crie o BD concurso no MySQL:
