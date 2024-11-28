@@ -35,8 +35,7 @@ Este projeto é uma aplicação para um **Concurso Gastronômico**, onde os usu�
 ## 🗂️ Diagrama do Banco de Dados
 
 Abaixo está o modelo de dados utilizado no projeto:
-
-![Modelo Relacional](./path_to_diagram_image.png)
+https://github.com/user-attachments/assets/a0a22399-b627-44a5-ac53-b66768e5f0a1
 
 ## 🚀 Como Executar o Projeto
 
