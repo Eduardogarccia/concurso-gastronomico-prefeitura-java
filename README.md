@@ -47,20 +47,24 @@ Abaixo está o modelo de dados utilizado no projeto:
 
 ### Passos
 1. Clone o repositório:
+
    ```bash
    git clone https://github.com/seu-usuario/concurso-gastronomico.git
   ```
 
 2. Crie o BD concurso no MySQL:
-   ```bash
+
+  ```bash
    create database concurso
   ```
 
 3. Ajuste o arquivo application.properties do projeto:
+
    ```bash
    spring.datasource.username=(seu user)
    spring.datasource.password=(sua senha)
   ```
+
 4. Rode o projeto "Run As Spring Boot App"
 
 5. Abra o Swegger: http://localhost:8080/swagger-ui.html
