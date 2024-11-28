@@ -35,7 +35,7 @@ Este projeto é uma aplicação para um **Concurso Gastronômico**, onde os usu�
 ## 🗂️ Diagrama do Banco de Dados
 
 Abaixo está o modelo de dados utilizado no projeto:
-https://github.com/user-attachments/assets/a0a22399-b627-44a5-ac53-b66768e5f0a1
+[https://github.com/user-attachments/assets/a0a22399-b627-44a5-ac53-b66768e5f0a1](https://github.com/Eduardogarccia/concurso-gastronomico-prefeitura-java/issues/1#issue-2703027133)
 
 ## 🚀 Como Executar o Projeto
 
