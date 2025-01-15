@@ -34,7 +34,7 @@ public class SwaggerConfig implements WebMvcConfigurer {
     public OpenAPI customOpenAPI() {
         return new OpenAPI()
                 .info(new Info().title("Concurso Gastronomico - API")
-                        .description("API - Concurso Gastronomico")
+                        .description("Concurso Gastronomico")
                         .version("1.0")
                         .license(new io.swagger.v3.oas.models.info.License().name("").url("")))
                 .schemaRequirement("Authorization", new SecurityScheme()
